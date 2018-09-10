@@ -1,0 +1,43 @@
+server.port=8060
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8061/eureka/
+
+
+spring.cloud.gateway.discovery.locator.enabled=true
+
+spring.cloud.gateway.discovery.routes.1.id=gateway_service
+
+spring.cloud.gateway.discovery.routes.1.uri=lb://gateway_service
+#spring.cloud.gateway.discovery.routes.1.uri=http://localhost:8081
+
+#spring.cloud.gateway.discovery.routes.predicates.Path=/athlete-service/**
+spring.cloud.gateway.discovery.routes.predicates.1.Path=/athlete-service/api/createTrainingSession
+
+spring.cloud.gateway.discovery.routes.filters.1.StripPrefix=1
+
+#spring.cloud.gateway.discovery.routes.filters.RewritePath=/athlete-service/(?.*), /$\{path}
+
+
+
+# /athlete-service/api/createTrainingSession
+
+# /athlete-service/trainingsession/new 
+
+#curl -H "Content-Type: application/json" -X POST -d 
+#'{ "email": "mccarthy.richard@gmail.com","activityName": "cycling","duration": 95,"averageHeartRate": 145,"loggedDate": "15/08/2018", "age": 41, "gender": "male", "weight": 78.4 }' 
+#http://localhost:8081/api/createTrainingSession
+
+
+# http://localhost:8060/athlete-service/api/createTrainingSession
+
+
+
+
+# curl -H "Content-Type: application/json" -X POST -d '{ "email": "mccarthy.richard123@gmail.com","activityName": "cycling","duration": 180,"averageHeartRate": 135,"loggedDate": "31/08/2018", "age": 41, "gender": "male", "weight": 78.4 }' http://localhost:8060/athlete-service/api/createTrainingSession
+
+
+
+
+
+
+
